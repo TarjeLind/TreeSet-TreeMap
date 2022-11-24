@@ -10,7 +10,15 @@ public class Main {
         people.add(new Person("Тенгель", "Злой", 90));
         people.add(new Person("Таргенур", "Странник Король Людей Льда", 40));
 
-        Collections.sort(people, new PersonsComparator());
+        final int max = 3;
+        people.sort((o1, o2) -> {
+            int len1 = o1.getSurname().split(" ").length;
+            int len2 = o2.getSurname().split(" ").length;
+            if (Math.min(len1, max) != Math.min(len2, max)) {
+                return Integer.compare(len1, len2);
+            }
+            return Integer.compare(o1.getAge(), o2.getAge());
+        });
         System.out.println(people);
     }
 }
